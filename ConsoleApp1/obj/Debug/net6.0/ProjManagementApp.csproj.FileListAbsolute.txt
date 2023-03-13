@@ -1,0 +1,15 @@
+C:\Users\ernys\Desktop\program_projects\ShopSmith\ConsoleApp1\bin\Debug\net6.0\ProjManagementApp.exe
+C:\Users\ernys\Desktop\program_projects\ShopSmith\ConsoleApp1\bin\Debug\net6.0\ProjManagementApp.deps.json
+C:\Users\ernys\Desktop\program_projects\ShopSmith\ConsoleApp1\bin\Debug\net6.0\ProjManagementApp.runtimeconfig.json
+C:\Users\ernys\Desktop\program_projects\ShopSmith\ConsoleApp1\bin\Debug\net6.0\ProjManagementApp.dll
+C:\Users\ernys\Desktop\program_projects\ShopSmith\ConsoleApp1\bin\Debug\net6.0\ProjManagementApp.pdb
+C:\Users\ernys\Desktop\program_projects\ShopSmith\ConsoleApp1\obj\Debug\net6.0\ProjManagementApp.csproj.AssemblyReference.cache
+C:\Users\ernys\Desktop\program_projects\ShopSmith\ConsoleApp1\obj\Debug\net6.0\ProjManagementApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ernys\Desktop\program_projects\ShopSmith\ConsoleApp1\obj\Debug\net6.0\ProjManagementApp.AssemblyInfoInputs.cache
+C:\Users\ernys\Desktop\program_projects\ShopSmith\ConsoleApp1\obj\Debug\net6.0\ProjManagementApp.AssemblyInfo.cs
+C:\Users\ernys\Desktop\program_projects\ShopSmith\ConsoleApp1\obj\Debug\net6.0\ProjManagementApp.csproj.CoreCompileInputs.cache
+C:\Users\ernys\Desktop\program_projects\ShopSmith\ConsoleApp1\obj\Debug\net6.0\ProjManagementApp.dll
+C:\Users\ernys\Desktop\program_projects\ShopSmith\ConsoleApp1\obj\Debug\net6.0\refint\ProjManagementApp.dll
+C:\Users\ernys\Desktop\program_projects\ShopSmith\ConsoleApp1\obj\Debug\net6.0\ProjManagementApp.pdb
+C:\Users\ernys\Desktop\program_projects\ShopSmith\ConsoleApp1\obj\Debug\net6.0\ProjManagementApp.genruntimeconfig.cache
+C:\Users\ernys\Desktop\program_projects\ShopSmith\ConsoleApp1\obj\Debug\net6.0\ref\ProjManagementApp.dll
