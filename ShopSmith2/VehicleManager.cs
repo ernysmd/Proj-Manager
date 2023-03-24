@@ -21,7 +21,8 @@ namespace ShopSmith2
                 Console.WriteLine("1. Add vehicle");
                 Console.WriteLine("2. Remove vehicle");
                 Console.WriteLine("3. List vehicles");
-                Console.WriteLine("4. Exit");
+                Console.WriteLine("4. Filter vehicles by year");
+                Console.WriteLine("5. Exit");
 
                 int managerInput = int.Parse(Console.ReadLine());
 
@@ -39,10 +40,29 @@ namespace ShopSmith2
                 }
                 else if (managerInput == 4)
                 {
+                    Console.Write("Enter the minimum year: ");
+                    int minYear = int.Parse(Console.ReadLine());
+                    FilterVehiclesByYear(minYear);
+                }
+                else if (managerInput == 5)
+                {
                     break;
                 }
             }
         }
+
+
+        public void FilterVehiclesByYear(int minYear)
+        {
+            var filteredVehicles = vehicles.Where(v => v.Year >= minYear).ToList();
+
+            Console.WriteLine($"Vehicles from {minYear} and newer:");
+            foreach (var vehicle in filteredVehicles)
+            {
+                Console.WriteLine($"{vehicle.Year} {vehicle.Make} {vehicle.Model}");
+            }
+        }
+
 
         public void AddVehicle()
         {
@@ -106,11 +126,10 @@ namespace ShopSmith2
                     string make = vehicleData[1];
                     string model = vehicleData[2];
                     int year = int.Parse(vehicleData[3]);
-                    string laborDetails = vehicleData[4] != "N/A" ? vehicleData[4] : null;
-                    double laborHours = double.Parse(vehicleData[5]);
 
-                    Console.WriteLine($"ID: {id} | {year} {make} {model} | Labor Details: {laborDetails ?? "N/A"} | Labor Hours: {laborHours}");
+                    Console.WriteLine($"ID: {id} | {year} {make} {model}");
                 }
+
             }
             else
             {
@@ -118,6 +137,12 @@ namespace ShopSmith2
             }
         }
 
+        public enum LaborCategory
+        {
+            Fabrication,
+            AssemblyDisassembly,
+            Electrical
+        }
 
         public void AddLaborDetails()
         {
@@ -134,9 +159,33 @@ namespace ShopSmith2
                 Console.Write("Enter labor hours: ");
                 double laborHours = double.Parse(Console.ReadLine());
 
+                Console.WriteLine("Select a labor category:");
+                Console.WriteLine("1. Fabrication");
+                Console.WriteLine("2. Assembly/Disassembly");
+                Console.WriteLine("3. Electrical");
+                int categoryChoice = int.Parse(Console.ReadLine());
+
+                LaborCategory category = LaborCategory.Fabrication; // Default value
+                switch (categoryChoice)
+                {
+                    case 1:
+                        category = LaborCategory.Fabrication;
+                        break;
+                    case 2:
+                        category = LaborCategory.AssemblyDisassembly;
+                        break;
+                    case 3:
+                        category = LaborCategory.Electrical;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid category choice, using default category (Fabrication).");
+                        break;
+                }
+
                 Vehicle vehicle = vehicles[index];
                 vehicle.LaborDetails = laborDetails;
                 vehicle.LaborHours = laborHours;
+                vehicle.Category = category;
 
                 SaveVehiclesToFile();
             }
@@ -145,6 +194,7 @@ namespace ShopSmith2
                 Console.WriteLine("Invalid index.");
             }
         }
+
 
 
         public void CustomerSelection()
@@ -162,6 +212,7 @@ namespace ShopSmith2
                 Console.WriteLine($"Year: {vehicle.Year}");
                 Console.WriteLine($"Labor details: {vehicle.LaborDetails ?? "N/A"}");
                 Console.WriteLine($"Labor hours: {vehicle.LaborHours}");
+                Console.WriteLine($"Labor category: {vehicle.Category}");
             }
             else
             {
@@ -181,8 +232,9 @@ namespace ShopSmith2
             {
                 foreach (Vehicle vehicle in vehicles)
                 {
-                    writer.WriteLine($"{vehicle.ID},{vehicle.Make},{vehicle.Model},{vehicle.Year},{vehicle.LaborDetails ?? "N/A"},{vehicle.LaborHours}");
+                    writer.WriteLine($"{vehicle.ID},{vehicle.Make},{vehicle.Model},{vehicle.Year},{vehicle.LaborDetails ?? "N/A"},{vehicle.LaborHours},{vehicle.Category}");
                 }
+
             }
         }
 
@@ -205,11 +257,19 @@ namespace ShopSmith2
                     string laborDetails = vehicleData[4] != "N/A" ? vehicleData[4] : null;
                     double laborHours = double.Parse(vehicleData[5]);
 
+                    LaborCategory category = LaborCategory.Fabrication; // Default value
+                    if (vehicleData.Length > 6)
+                    {
+                        category = (LaborCategory)Enum.Parse(typeof(LaborCategory), vehicleData[6]);
+                    }
+
                     Vehicle vehicle = new Vehicle(id, make, model, year);
                     vehicle.LaborDetails = laborDetails;
                     vehicle.LaborHours = laborHours;
+                    vehicle.Category = category;
                     vehicles.Add(vehicle);
                 }
+
             }
         }
 

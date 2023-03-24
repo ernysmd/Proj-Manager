@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ernys\\Desktop\\program_projects\\ShopSmith2\\ShopSmith2.csproj": {}
+    "C:\\Users\\ernys\\Desktop\\program_projects\\ShopSmith\\ShopSmith2\\ShopSmith2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ernys\\Desktop\\program_projects\\ShopSmith2\\ShopSmith2.csproj": {
+    "C:\\Users\\ernys\\Desktop\\program_projects\\ShopSmith\\ShopSmith2\\ShopSmith2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ernys\\Desktop\\program_projects\\ShopSmith2\\ShopSmith2.csproj",
+        "projectUniqueName": "C:\\Users\\ernys\\Desktop\\program_projects\\ShopSmith\\ShopSmith2\\ShopSmith2.csproj",
         "projectName": "ShopSmith2",
-        "projectPath": "C:\\Users\\ernys\\Desktop\\program_projects\\ShopSmith2\\ShopSmith2.csproj",
+        "projectPath": "C:\\Users\\ernys\\Desktop\\program_projects\\ShopSmith\\ShopSmith2\\ShopSmith2.csproj",
         "packagesPath": "C:\\Users\\ernys\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ernys\\Desktop\\program_projects\\ShopSmith2\\obj\\",
+        "outputPath": "C:\\Users\\ernys\\Desktop\\program_projects\\ShopSmith\\ShopSmith2\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
