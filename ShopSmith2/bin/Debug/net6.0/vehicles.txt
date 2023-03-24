@@ -1,5 +1,6 @@
-1,honda,pilot,2013,N/A,0
-2,Lexus,IS250,2007,N/A,0
-3,Lexus,GS300,2003,N/A,0
-4,Mitsubishi,Eclipse ,1997,N/A,0
-5,jeep,wrangler,1995,N/A,0
+1,honda,pilot,2013,N/A,0,Fabrication
+2,Lexus,IS250,2007,made changes to the firewall. Welded a plate to the motor mounts.,24,Fabrication
+3,Mitsubishi,Eclipse ,1997,vapor honed the transfer case ,4,AssemblyDisassembly
+4,Chevy,1500,1995,rust repair in bed frame ,4,Fabrication
+5,Chevy,Corvette,2016,engine oil changed ,1,AssemblyDisassembly
+6,Ford,Mustang,1985,changed brake pads,4,AssemblyDisassembly

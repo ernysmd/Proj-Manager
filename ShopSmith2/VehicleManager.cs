@@ -108,9 +108,12 @@ namespace ShopSmith2
 
         public void ListVehicles()
         {
-            if (File.Exists(@"C:\Users\ernys\Desktop\program_projects\ShopSmith2\vehicles.txt"))
+            string filePath = "vehicles.txt"; // For the same directory as the executable
+                                             
+
+            if (File.Exists(filePath))
             {
-                string[] lines = File.ReadAllLines(@"C:\Users\ernys\Desktop\program_projects\ShopSmith2\vehicles.txt");
+                string[] lines = File.ReadAllLines(filePath);
 
                 if (lines.Length == 0)
                 {
@@ -228,13 +231,15 @@ namespace ShopSmith2
                 vehicles[i].ID = i + 1;
             }
 
-            using (StreamWriter writer = new StreamWriter(@"C:\Users\ernys\Desktop\program_projects\ShopSmith2\vehicles.txt"))
+            string filePath = "vehicles.txt"; // For the same directory as the executable
+                                              
+
+            using (StreamWriter writer = new StreamWriter(filePath))
             {
                 foreach (Vehicle vehicle in vehicles)
                 {
                     writer.WriteLine($"{vehicle.ID},{vehicle.Make},{vehicle.Model},{vehicle.Year},{vehicle.LaborDetails ?? "N/A"},{vehicle.LaborHours},{vehicle.Category}");
                 }
-
             }
         }
 
@@ -242,9 +247,12 @@ namespace ShopSmith2
 
         public void LoadVehiclesFromFile()
         {
-            if (File.Exists(@"C:\Users\ernys\Desktop\program_projects\ShopSmith2\vehicles.txt"))
+            string filePath = "vehicles.txt"; // For the same directory as the executable
+                                              
+
+            if (File.Exists(filePath))
             {
-                string[] lines = File.ReadAllLines(@"C:\Users\ernys\Desktop\program_projects\ShopSmith2\vehicles.txt");
+                string[] lines = File.ReadAllLines(filePath);
 
                 foreach (string line in lines)
                 {
@@ -260,7 +268,15 @@ namespace ShopSmith2
                     LaborCategory category = LaborCategory.Fabrication; // Default value
                     if (vehicleData.Length > 6)
                     {
-                        category = (LaborCategory)Enum.Parse(typeof(LaborCategory), vehicleData[6]);
+                        if (Enum.TryParse<LaborCategory>(vehicleData[6], out LaborCategory parsedCategory))
+                        {
+                            category = parsedCategory;
+                        }
+                        else
+                        {
+                            // Handle the case when the value couldn't be parsed. 
+                            Console.WriteLine($"Unable to parse LaborCategory for Vehicle ID: {id}. Using default value.");
+                        }
                     }
 
                     Vehicle vehicle = new Vehicle(id, make, model, year);
@@ -269,9 +285,11 @@ namespace ShopSmith2
                     vehicle.Category = category;
                     vehicles.Add(vehicle);
                 }
-
             }
         }
+
+
+
 
     }
 }
