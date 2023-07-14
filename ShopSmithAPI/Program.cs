@@ -1,6 +1,7 @@
-
+﻿
 using Microsoft.EntityFrameworkCore;
 using ShopSmithAPI.Data;
+using ShopSmithAPI.Controllers;
 
 namespace ShopSmithAPI
 {
@@ -38,6 +39,7 @@ namespace ShopSmithAPI
 
             app.MapControllers();
 
+                    
             app.Run();
         }
     }

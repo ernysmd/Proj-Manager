@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ernys\\Desktop\\Coding\\ShopSmith2\\ShopSmithAPI\\ShopSmithAPI.csproj": {}
+    "C:\\Users\\ernys\\Desktop\\Coding\\ShopSmith\\ShopSmithAPI\\ShopSmithAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ernys\\Desktop\\Coding\\ShopSmith2\\ShopSmithAPI\\ShopSmithAPI.csproj": {
+    "C:\\Users\\ernys\\Desktop\\Coding\\ShopSmith\\ShopSmithAPI\\ShopSmithAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ernys\\Desktop\\Coding\\ShopSmith2\\ShopSmithAPI\\ShopSmithAPI.csproj",
+        "projectUniqueName": "C:\\Users\\ernys\\Desktop\\Coding\\ShopSmith\\ShopSmithAPI\\ShopSmithAPI.csproj",
         "projectName": "ShopSmithAPI",
-        "projectPath": "C:\\Users\\ernys\\Desktop\\Coding\\ShopSmith2\\ShopSmithAPI\\ShopSmithAPI.csproj",
+        "projectPath": "C:\\Users\\ernys\\Desktop\\Coding\\ShopSmith\\ShopSmithAPI\\ShopSmithAPI.csproj",
         "packagesPath": "C:\\Users\\ernys\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ernys\\Desktop\\Coding\\ShopSmith2\\ShopSmithAPI\\obj\\",
+        "outputPath": "C:\\Users\\ernys\\Desktop\\Coding\\ShopSmith\\ShopSmithAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -45,9 +45,13 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
-              "version": "[7.0.5, )"
+              "version": "[7.0.7, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -73,9 +77,13 @@
               "target": "Package",
               "version": "[7.0.8, )"
             },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[7.0.7, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.4.0, )"
+              "version": "[6.5.0, )"
             }
           },
           "imports": [

@@ -28,18 +28,19 @@ namespace ShopSmithAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("LaborHours")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("LaborMinutes")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<decimal>("LaborTime")
+                        .HasPrecision(4, 2)
+                        .HasColumnType("decimal(4,2)");
 
                     b.Property<Guid>("VehicleId")
                         .HasColumnType("uniqueidentifier");
@@ -53,11 +54,9 @@ namespace ShopSmithAPI.Migrations
 
             modelBuilder.Entity("ShopSmithAPI.Models.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Discriminator")
                         .IsRequired()
@@ -94,8 +93,8 @@ namespace ShopSmithAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Make")
                         .IsRequired()
@@ -144,13 +143,11 @@ namespace ShopSmithAPI.Migrations
 
             modelBuilder.Entity("ShopSmithAPI.Models.Labor", b =>
                 {
-                    b.HasOne("ShopSmithAPI.Models.Vehicle", "Vehicle")
-                        .WithMany()
+                    b.HasOne("ShopSmithAPI.Models.Vehicle", null)
+                        .WithMany("Labors")
                         .HasForeignKey("VehicleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Vehicle");
                 });
 
             modelBuilder.Entity("ShopSmithAPI.Models.Vehicle", b =>
@@ -160,6 +157,11 @@ namespace ShopSmithAPI.Migrations
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ShopSmithAPI.Models.Vehicle", b =>
+                {
+                    b.Navigation("Labors");
                 });
 
             modelBuilder.Entity("ShopSmithAPI.Models.Customer", b =>

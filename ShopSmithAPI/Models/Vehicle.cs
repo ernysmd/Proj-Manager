@@ -1,5 +1,10 @@
 ﻿using System.Reflection.Emit;
 using System.Text.Json.Serialization;
+using ShopSmithAPI.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.OpenApi;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.Build.Framework;
 
 namespace ShopSmithAPI.Models
 {
@@ -11,7 +16,12 @@ namespace ShopSmithAPI.Models
         public string Model { get; set; } = string.Empty;
         public string Year { get; set; } = string.Empty;
         public string Color { get; set; } = string.Empty;
-        public int CustomerId { get; set; }
+        [Required]
+        public Guid CustomerId { get; set; }
+        [JsonIgnore]
+        public List<Labor> Labors { get; set; }
 
     }
+
+
 }
