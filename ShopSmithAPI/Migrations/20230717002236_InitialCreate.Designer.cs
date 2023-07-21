@@ -12,15 +12,15 @@ using ShopSmithAPI.Data;
 namespace ShopSmithAPI.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20230714153115_UpdatedLaborAndVehicleRelationship")]
-    partial class UpdatedLaborAndVehicleRelationship
+    [Migration("20230717002236_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.8")
+                .HasAnnotation("ProductVersion", "7.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -38,35 +38,30 @@ namespace ShopSmithAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("LaborHours")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<decimal>("LaborTime")
+                        .HasPrecision(4, 2)
+                        .HasColumnType("decimal(4,2)");
 
-                    b.Property<decimal>("LaborMinutes")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("VehicleId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("VehicleId1")
+                    b.Property<Guid?>("VehicleId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VehicleId1");
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("VehicleId");
 
                     b.ToTable("Labors");
                 });
 
             modelBuilder.Entity("ShopSmithAPI.Models.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Discriminator")
                         .IsRequired()
@@ -81,6 +76,10 @@ namespace ShopSmithAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -103,8 +102,8 @@ namespace ShopSmithAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Make")
                         .IsRequired()
@@ -133,10 +132,6 @@ namespace ShopSmithAPI.Migrations
                 {
                     b.HasBaseType("ShopSmithAPI.Models.User");
 
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasDiscriminator().HasValue("Customer");
                 });
 
@@ -153,28 +148,33 @@ namespace ShopSmithAPI.Migrations
 
             modelBuilder.Entity("ShopSmithAPI.Models.Labor", b =>
                 {
-                    b.HasOne("ShopSmithAPI.Models.Vehicle", null)
+                    b.HasOne("ShopSmithAPI.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ShopSmithAPI.Models.Vehicle", "Vehicle")
                         .WithMany("Labors")
-                        .HasForeignKey("VehicleId1");
+                        .HasForeignKey("VehicleId");
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("Vehicle");
                 });
 
             modelBuilder.Entity("ShopSmithAPI.Models.Vehicle", b =>
                 {
-                    b.HasOne("ShopSmithAPI.Models.Customer", null)
-                        .WithMany("Vehicles")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("ShopSmithAPI.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("ShopSmithAPI.Models.Vehicle", b =>
                 {
                     b.Navigation("Labors");
-                });
-
-            modelBuilder.Entity("ShopSmithAPI.Models.Customer", b =>
-                {
-                    b.Navigation("Vehicles");
                 });
 #pragma warning restore 612, 618
         }

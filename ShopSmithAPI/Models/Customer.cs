@@ -1,12 +1,13 @@
-﻿using System.Text.Json.Serialization;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Newtonsoft.Json;
+using System.Text.Json.Serialization;
+using JsonIgnoreAttribute = Newtonsoft.Json.JsonIgnoreAttribute;
 
 namespace ShopSmithAPI.Models
 {
     public class Customer : User
     {
-        public Guid Id { get; set; }
-        public string Phone { get; set; } = string.Empty;
-        [JsonIgnore]
-        public virtual List<Vehicle> Vehicles { get; set; }
+       public List<Vehicle>? Vehicles { get; set; }
+
     }
 }

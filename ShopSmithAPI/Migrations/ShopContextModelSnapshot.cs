@@ -17,7 +17,7 @@ namespace ShopSmithAPI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.8")
+                .HasAnnotation("ProductVersion", "7.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -35,19 +35,19 @@ namespace ShopSmithAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("EmployeeId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<decimal>("LaborTime")
                         .HasPrecision(4, 2)
                         .HasColumnType("decimal(4,2)");
 
-                    b.Property<Guid>("VehicleId")
+                    b.Property<Guid>("employeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("vehicleId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VehicleId");
+                    b.HasIndex("vehicleId");
 
                     b.ToTable("Labors");
                 });
@@ -74,6 +74,10 @@ namespace ShopSmithAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");
@@ -93,9 +97,6 @@ namespace ShopSmithAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("CustomerId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Make")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -112,9 +113,12 @@ namespace ShopSmithAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("customerId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("customerId");
 
                     b.ToTable("Vehicles");
                 });
@@ -122,10 +126,6 @@ namespace ShopSmithAPI.Migrations
             modelBuilder.Entity("ShopSmithAPI.Models.Customer", b =>
                 {
                     b.HasBaseType("ShopSmithAPI.Models.User");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("Customer");
                 });
@@ -145,18 +145,20 @@ namespace ShopSmithAPI.Migrations
                 {
                     b.HasOne("ShopSmithAPI.Models.Vehicle", null)
                         .WithMany("Labors")
-                        .HasForeignKey("VehicleId")
+                        .HasForeignKey("vehicleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("ShopSmithAPI.Models.Vehicle", b =>
                 {
-                    b.HasOne("ShopSmithAPI.Models.Customer", null)
+                    b.HasOne("ShopSmithAPI.Models.Customer", "Customer")
                         .WithMany("Vehicles")
-                        .HasForeignKey("CustomerId")
+                        .HasForeignKey("customerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("ShopSmithAPI.Models.Vehicle", b =>

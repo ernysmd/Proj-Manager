@@ -12,14 +12,15 @@ namespace ShopSmithAPI.Models
     {
         public Guid Id { get; set; }
         public string Make { get; set; } = string.Empty;
-        public string VinNumber { get; set; } = string.Empty;
         public string Model { get; set; } = string.Empty;
         public string Year { get; set; } = string.Empty;
         public string Color { get; set; } = string.Empty;
-        [Required]
-        public Guid CustomerId { get; set; }
+        public string VinNumber { get; set; } = string.Empty;
         [JsonIgnore]
-        public List<Labor> Labors { get; set; }
+        public Customer Customer { get; set; } = new Customer();
+        public Guid customerId { get; set; }
+        [JsonIgnore]
+        public List<Labor>? Labors { get; set; }
 
     }
 

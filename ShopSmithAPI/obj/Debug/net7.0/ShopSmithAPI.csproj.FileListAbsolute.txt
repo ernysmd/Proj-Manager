@@ -332,3 +332,5 @@ C:\Users\ernys\Desktop\Coding\ShopSmith\ShopSmithAPI\obj\Debug\net7.0\refint\Sho
 C:\Users\ernys\Desktop\Coding\ShopSmith\ShopSmithAPI\obj\Debug\net7.0\ShopSmithAPI.pdb
 C:\Users\ernys\Desktop\Coding\ShopSmith\ShopSmithAPI\obj\Debug\net7.0\ShopSmithAPI.genruntimeconfig.cache
 C:\Users\ernys\Desktop\Coding\ShopSmith\ShopSmithAPI\obj\Debug\net7.0\ref\ShopSmithAPI.dll
+C:\Users\ernys\Desktop\Coding\ShopSmith\ShopSmithAPI\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\ernys\Desktop\Coding\ShopSmith\ShopSmithAPI\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
